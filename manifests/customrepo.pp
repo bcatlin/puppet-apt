@@ -85,6 +85,7 @@ define apt::customrepo (
     mode   => '0644',
     owner  => 'root',
     group  => 'root',
+    notify => Exec['apt_update'],
   }
 
   if $list_source != 'undef' {

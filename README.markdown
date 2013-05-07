@@ -80,8 +80,11 @@ To add a custom repository:
 ##Release Notes
 
 ###0.1.0
-* Adding support for templated `.list` files for `apt::customrepo`
-* Adding parameter documentation for `apt::customrepo`
+
+#### `apt::customrepo`
+* Support for templated `.list` files
+* Adding parameter documentation
+* `.list` file update now triggers an `apt-get update` 
 
 ###0.0.1
 * First PuppetForge release!
