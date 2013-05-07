@@ -79,6 +79,9 @@ To add a custom repository:
 
 ##Release Notes
 
+###0.1.2
+* Adding lsbdistcodename to sources.list.erb
+
 ###0.1.1
 
 #### `apt::customrepo`
