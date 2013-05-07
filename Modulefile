@@ -1,5 +1,5 @@
 name 'craigwatson1987-apt'
-version '0.1.0'
+version '0.1.1'
 author 'Craig Watson'
 license 'GNU General Public License v3'
 summary 'Manages apt configuration, including proxies, custom repostories and keys, default localisations and extra sources.list repos'

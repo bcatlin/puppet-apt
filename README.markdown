@@ -79,6 +79,11 @@ To add a custom repository:
 
 ##Release Notes
 
+###0.1.1
+
+#### `apt::customrepo`
+* Adding `deb-src` ability
+
 ###0.1.0
 
 #### `apt::customrepo`
