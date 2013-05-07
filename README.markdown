@@ -62,7 +62,7 @@ To add a custom repository:
 * `apt::update` - Declares an `exec` for use in triggering an `apt-get update`
 * `apt::sources` - Deploys a customised `/etc/apt/sources.list` file
 * `apt::key` - Defines an `apt` repository key, downloadable from HTTP or specified on instantiation'
-* `apt::customrepo` - Defines a custom repository, using a static (non-templated) file served from Puppet's filebucket as the `.list` file. Optionally can install a key via the `apt::key` definition.
+* `apt::customrepo` - Defines a custom repository, using either a templated file or a static (non-templated) file. Also installs the repository's key via `apt::key`
 
 ##Limitations
 
