@@ -3,44 +3,44 @@
 # Managed by puppet - DO NOT modify locally.
 ############################################
 
-deb http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar(::lsbdistcodename) %> main restricted
-deb-src http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar(::lsbdistcodename) %> main restricted
+deb http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar('::lsbdistcodename') %> main restricted
+deb-src http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar('::lsbdistcodename') %> main restricted
 
-deb http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar(::lsbdistcodename) %>-updates main restricted
-deb-src http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar(::lsbdistcodename) %>-updates main restricted
+deb http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar('::lsbdistcodename') %>-updates main restricted
+deb-src http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar('::lsbdistcodename') %>-updates main restricted
 
 <% if scope.lookupvar('apt::params::enable_universe') == true -%>
-deb http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar(::lsbdistcodename) %> universe
-deb-src http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar(::lsbdistcodename) %> universe
-deb http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar(::lsbdistcodename) %>-updates universe
-deb-src http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar(::lsbdistcodename) %>-updates universe
+deb http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar('::lsbdistcodename') %> universe
+deb-src http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar('::lsbdistcodename') %> universe
+deb http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar('::lsbdistcodename') %>-updates universe
+deb-src http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar('::lsbdistcodename') %>-updates universe
 <% end -%>
 
 <% if scope.lookupvar('apt::params::enable_multiverse') == true -%>
-deb http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar(::lsbdistcodename) %> multiverse
-deb-src http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar(::lsbdistcodename) %> multiverse
-deb http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar(::lsbdistcodename) %>-updates multiverse
-deb-src http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar(::lsbdistcodename) %>-updates multiverse
+deb http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar('::lsbdistcodename') %> multiverse
+deb-src http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar('::lsbdistcodename') %> multiverse
+deb http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar('::lsbdistcodename') %>-updates multiverse
+deb-src http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar('::lsbdistcodename') %>-updates multiverse
 <% end -%>
 
 <% if scope.lookupvar('apt::params::enable_backports') == true -%>
-deb http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar(::lsbdistcodename) %>-backports main restricted universe multiverse
-deb-src http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar(::lsbdistcodename) %>-backports main restricted universe multiverse
+deb http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar('::lsbdistcodename') %>-backports main restricted universe multiverse
+deb-src http://<%= scope.lookupvar('apt::params::locale') %>.archive.ubuntu.com/ubuntu/ <%= scope.lookupvar('::lsbdistcodename') %>-backports main restricted universe multiverse
 <% end -%>
 
-deb http://security.ubuntu.com/ubuntu <%= scope.lookupvar(::lsbdistcodename) %>-security main restricted
-deb-src http://security.ubuntu.com/ubuntu <%= scope.lookupvar(::lsbdistcodename) %>-security main restricted
-deb http://security.ubuntu.com/ubuntu <%= scope.lookupvar(::lsbdistcodename) %>-security universe
-deb-src http://security.ubuntu.com/ubuntu <%= scope.lookupvar(::lsbdistcodename) %>-security universe
-deb http://security.ubuntu.com/ubuntu <%= scope.lookupvar(::lsbdistcodename) %>-security multiverse
-deb-src http://security.ubuntu.com/ubuntu <%= scope.lookupvar(::lsbdistcodename) %>-security multiverse
+deb http://security.ubuntu.com/ubuntu <%= scope.lookupvar('::lsbdistcodename') %>-security main restricted
+deb-src http://security.ubuntu.com/ubuntu <%= scope.lookupvar('::lsbdistcodename') %>-security main restricted
+deb http://security.ubuntu.com/ubuntu <%= scope.lookupvar('::lsbdistcodename') %>-security universe
+deb-src http://security.ubuntu.com/ubuntu <%= scope.lookupvar('::lsbdistcodename') %>-security universe
+deb http://security.ubuntu.com/ubuntu <%= scope.lookupvar('::lsbdistcodename') %>-security multiverse
+deb-src http://security.ubuntu.com/ubuntu <%= scope.lookupvar('::lsbdistcodename') %>-security multiverse
 
 <% if scope.lookupvar('apt::params::use_partner') == true -%>
-deb http://archive.canonical.com/ubuntu <%= scope.lookupvar(::lsbdistcodename) %> partner
-deb-src http://archive.canonical.com/ubuntu <%= scope.lookupvar(::lsbdistcodename) %> partner
+deb http://archive.canonical.com/ubuntu <%= scope.lookupvar('::lsbdistcodename') %> partner
+deb-src http://archive.canonical.com/ubuntu <%= scope.lookupvar('::lsbdistcodename') %> partner
 <% end -%>
 
 <% if scope.lookupvar('apt::params::use_extras') == true -%>
-deb http://extras.ubuntu.com/ubuntu <%= scope.lookupvar(::lsbdistcodename) %> main
-deb-src http://extras.ubuntu.com/ubuntu <%= scope.lookupvar(::lsbdistcodename) %> main
+deb http://extras.ubuntu.com/ubuntu <%= scope.lookupvar('::lsbdistcodename') %> main
+deb-src http://extras.ubuntu.com/ubuntu <%= scope.lookupvar('::lsbdistcodename') %> main
 <% end -%>
