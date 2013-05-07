@@ -5,22 +5,22 @@
 # === Parameters:
 #
 # [*ensure*]
-#   Whether to add or remove the key.
+#   - Whether to add or remove the key.
 #   Required: either 'present' or 'absent'
 #
 # [*apt_key_url*]
-#   The HTTP URL for downloading the key file.
+#   - The HTTP URL for downloading the key file.
 #   Example: 'http://my.keyserver.tld/mykey.asc'
 #   Default: 'undef' (string)
 #
 # [*key_server*]
-#   The server location for downloading the key.
+#   - The server location for downloading the key. Must be used with 'key_id'
+#     below.
 #   Example: 'keyserver.ubuntu.com'
-#   Must be used with 'key_id' below.
 #   Default: 'undef' (string)
 #
 # [*key_id*]
-#   The ID of the key to download from the above 'key_server' location.
+#   - The ID of the key to download from the above 'key_server' location.
 #   Example: '643DC6BD56580CEB1AB4A9F63B22AB97AF1CDFA9'
 #   Default: 'undef' (string)
 #

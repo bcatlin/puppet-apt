@@ -40,6 +40,15 @@ To accept default parameters:
 
     include apt
 
+To add a custom repository:
+
+    apt::customrepo { 'getdeb':
+      repo_url       => 'http://archive.getdeb.net/ubuntu',
+      repo_release   => "${::lsbdistcodename}-getdeb",
+      repo_component => 'apps',
+      key_url        => 'http://archive.getdeb.net/getdeb-archive.key',
+    }
+
 ##Usage
 
 * Parameters are explained in-depth in the `manifests/params.pp` file.
@@ -68,7 +77,7 @@ To accept default parameters:
 
 ##Release Notes
 
-###0.0.2
+###0.1.0
 * Adding support for templated `.list` files for `apt::customrepo`
 * Adding parameter documentation for `apt::customrepo`
 

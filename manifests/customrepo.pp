@@ -9,13 +9,36 @@
 #
 # === Parameters:
 #
+# [*ensure*]
+#   - Whether to remove or deploy the .list file
+#   Example: present
+#   Default: present (Puppet ensure)
+
 # [*list_source*]
-#   'source' variable for the .list file (specify this or 'list_content' below)
+#   - Source file to deploy as the .list file (takes precendence over
+#     the 'list_template' variable below)
+#   Example: 'puppet:///modules/mymodule/myrepo.list'
 #   Default: 'undef' (string)
 #
-# [*list_content*]
-#   'content' variable for the .list file (specify this or 'list_source' below)
-#   Example: 'http://my.keyserver.tld/mykey.asc'
+# [*list_template*]
+#   - Template to dynamically deploy the .list from (useful for custom logic)
+#   Example: 'mymodule/myrepo.list.erb'
+#   Default: 'apt/repo.list.erb' (string)
+#
+# [*repo_url*]
+#   - URL for the repository, used with the default 'list_template'
+#  Example: 'http://archive.getdeb.net/ubuntu'
+#  Default: 'undef' (string)
+#
+# [*repo_release*]
+#   - Release codename for the repository, used with the defaut 'list_template'
+#     Useful when your repository is for a different release
+#   Example: 'precise'
+#   Default: $::lsbdistcodename (top-level fact - string)
+#
+# [*repo_component*]
+#   - Component to load from the repository
+#   Example: 'main'
 #   Default: 'undef' (string)
 #
 # [*apt_key_url*]
@@ -44,36 +67,44 @@
 # Published under the GNU General Public License v3
 #
 define apt::customrepo (
-  $list_source  = 'undef',
-  $list_content = 'undef',
-  $key_url      = 'undef',
-  $key_server   = 'undef',
-  $key_id       = 'undef',
+  $ensure         = present,
+  $list_source    = 'undef',
+  $list_template  = 'apt/repo.list.erb',
+  $repo_url       = 'undef',
+  $repo_release   = $::lsbdistcodename,
+  $repo_component = 'undef',
+  $key_url        = 'undef',
+  $key_server     = 'undef',
+  $key_id         = 'undef',
 ) {
 
   include apt::update
 
-  if $list_source == 'undef' and $list_content == 'undef' {
-    fail 'Must specify one of 'list_source' or 'list_content'
-  } elseif $list_source != 'undef' {
-    File["/etc/apt/sources.list.d/${name}.list"] {
-      source => $list_source,
-    }
-  } else {
-    File["/etc/apt/sources.list.d/${name}.list"] {
-      content => $list_content,
-    }
-  }
-
   file { "/etc/apt/sources.list.d/${name}.list":
-    ensure => file,
+    ensure => $ensure,
     mode   => '0644',
     owner  => 'root',
     group  => 'root',
   }
 
+  if $list_source != 'undef' {
+    File ["/etc/apt/sources.list.d/${name}.list"] {
+      source => $list_source,
+    }
+  } else {
+    if $list_template == 'apt/repo.list.erb' {
+      if $repo_url == 'undef' or $repo_component == 'undef' {
+        fail 'Must specify $repo_url and $repo_component if using the default template'
+      }
+    }
+
+    File ["/etc/apt/sources.list.d/${name}.list"] {
+      content => template($list_template),
+    }
+  }
+
   apt::key { $name:
-    ensure      => present,
+    ensure      => $ensure,
     apt_key_url => $key_url,
     key_server  => $key_server,
     key_id      => $key_id,
