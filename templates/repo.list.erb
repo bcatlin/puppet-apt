@@ -5,3 +5,6 @@
 
 # Puppet name: <%= name %>
 deb <%= repo_url %> <%= repo_release %> <%= repo_component %>
+<% if repo_src == true -%>
+deb-src <%= repo_url %> <%= repo_release %> <%= repo_component %>
+<% end -%>

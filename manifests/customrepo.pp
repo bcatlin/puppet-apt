@@ -41,6 +41,11 @@
 #   Example: 'main'
 #   Default: 'undef' (string)
 #
+# [*repo_src*]
+#   - Whether or not to add a deb-src line to the .list file
+#   Example: true
+#   Default: false (boolean)
+#
 # [*apt_key_url*]
 #   The HTTP URL for downloading the key file.
 #   Example: 'http://my.keyserver.tld/mykey.asc'
@@ -73,6 +78,7 @@ define apt::customrepo (
   $repo_url       = 'undef',
   $repo_release   = $::lsbdistcodename,
   $repo_component = 'undef',
+  $repo_src       = false,
   $key_url        = 'undef',
   $key_server     = 'undef',
   $key_id         = 'undef',
