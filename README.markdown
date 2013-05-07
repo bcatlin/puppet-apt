@@ -5,7 +5,7 @@
 1. [Overview - What is the puppet-apt module?](#overview)
 2. [Module Description - What does the module do?](#module-description)
 3. [Setup - The basics of getting started with puppet-apt](#setup)
-    * [What puppet-vmwaretools affects](#what-puppet-apt-affects)
+    * [What puppet-apt affects](#what-puppet-apt-affects)
     * [Setup requirements](#setup-requirements)
     * [Beginning with puppet-apt](#beginning-with-registry)
 4. [Usage - Configuration options and additional functionality](#usage)
@@ -23,7 +23,7 @@ This module provides some (but not all) configuration for `apt` - the Debian-bas
 
 ##Setup
 
-###What puppet-vmwaretools affects
+###What puppet-apt affects
 
 * Configures a proxy in `/etc/apt/apt.conf.d` if necessary.
 * Writes the main `/etc/apt/sources.list` file with the configured localisation, and enables/disables additional Canonical repositories.
