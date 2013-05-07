@@ -68,4 +68,9 @@ To accept default parameters:
 
 ##Release Notes
 
-* 0.0.1 - First PuppetForge release!
+###0.0.2
+* Adding support for templated `.list` files for `apt::customrepo`
+* Adding parameter documentation for `apt::customrepo`
+
+###0.0.1
+* First PuppetForge release!

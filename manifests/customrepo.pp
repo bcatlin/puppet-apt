@@ -4,8 +4,35 @@
 #
 # == Actions:
 #
-# Deploys a file in /etc/apt/sources.list.d/
+# Deploys a file in /etc/apt/sources.list.d, either via template or static file
 # Adds a key to the custom repository.
+#
+# === Parameters:
+#
+# [*list_source*]
+#   'source' variable for the .list file (specify this or 'list_content' below)
+#   Default: 'undef' (string)
+#
+# [*list_content*]
+#   'content' variable for the .list file (specify this or 'list_source' below)
+#   Example: 'http://my.keyserver.tld/mykey.asc'
+#   Default: 'undef' (string)
+#
+# [*apt_key_url*]
+#   The HTTP URL for downloading the key file.
+#   Example: 'http://my.keyserver.tld/mykey.asc'
+#   Default: 'undef' (string)
+#
+# [*key_server*]
+#   The server location for downloading the key.
+#   Example: 'keyserver.ubuntu.com'
+#   Must be used with 'key_id' below.
+#   Default: 'undef' (string)
+#
+# [*key_id*]
+#   The ID of the key to download from the above 'key_server' location.
+#   Example: '643DC6BD56580CEB1AB4A9F63B22AB97AF1CDFA9'
+#   Default: 'undef' (string)
 #
 # === Authors:
 #
@@ -17,22 +44,34 @@
 # Published under the GNU General Public License v3
 #
 define apt::customrepo (
-  $source_location,
-  $key_url    = 'undef',
-  $key_server = 'undef',
-  $key_id     = 'undef',
+  $list_source  = 'undef',
+  $list_content = 'undef',
+  $key_url      = 'undef',
+  $key_server   = 'undef',
+  $key_id       = 'undef',
 ) {
 
   include apt::update
 
-  # == Repo file
-  file { "/etc/apt/sources.list.d/${name}.list":
-    owner   => 'root',
-    group   => 'root',
-    source  => "puppet:///modules/${source_location}",
+  if $list_source == 'undef' and $list_content == 'undef' {
+    fail 'Must specify one of 'list_source' or 'list_content'
+  } elseif $list_source != 'undef' {
+    File["/etc/apt/sources.list.d/${name}.list"] {
+      source => $list_source,
+    }
+  } else {
+    File["/etc/apt/sources.list.d/${name}.list"] {
+      content => $list_content,
+    }
   }
 
-  # == Key
+  file { "/etc/apt/sources.list.d/${name}.list":
+    ensure => file,
+    mode   => '0644',
+    owner  => 'root',
+    group  => 'root',
+  }
+
   apt::key { $name:
     ensure      => present,
     apt_key_url => $key_url,
