@@ -1,5 +1,7 @@
 #puppet-apt
 
+[![Build Status](https://secure.travis-ci.org/craigwatson/puppet-apt.png?branch=master)](http://travis-ci.org/craigwatson/puppet-apt)
+
 ####Table of Contents
 
 1. [Overview - What is the puppet-apt module?](#overview)
