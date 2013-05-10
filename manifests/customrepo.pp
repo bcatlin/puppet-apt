@@ -4,8 +4,9 @@
 #
 # == Actions:
 #
-# Deploys a file in /etc/apt/sources.list.d, either via template or static file
-# Adds a key to the custom repository.
+# Deploys a file in /etc/apt/sources.list.d, via template or static file. Adds
+# a key to the custom repository, and triggers an 'apt-get clean' and 'apt-get
+# update'.
 #
 # === Parameters:
 #
@@ -91,7 +92,7 @@ define apt::customrepo (
     mode   => '0644',
     owner  => 'root',
     group  => 'root',
-    notify => Exec['apt_update'],
+    notify => Exec['apt_clean'],
   }
 
   if $list_source != 'undef' {
@@ -115,9 +116,12 @@ define apt::customrepo (
     apt_key_url => $key_url,
     key_server  => $key_server,
     key_id      => $key_id,
-    notify      => Exec['apt_update'],
+    notify      => Exec['apt_clean'],
     require     => File["/etc/apt/sources.list.d/${name}.list"],
   }
 
+  Exec['apt_clean'] {
+    notify => Exec['apt_update']
+  }
 
 }

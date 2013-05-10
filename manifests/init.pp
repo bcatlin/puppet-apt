@@ -7,7 +7,7 @@
 # Conditionally configures an HTTP proxy server for apt
 # Adds localisation (defaulting to 'us') to the default repositories
 # Conditionally enables/disables the universe/multiverse/partner repositories
-# Provides a hook to trigger an `apt-get update`
+# Provides hook to trigger `apt-get update` and `apt-get clean` commands
 #
 # === Authors:
 #
@@ -22,5 +22,5 @@ class apt {
   include apt::params
   include apt::sources
   include apt::proxy
-  include apt::update
+  include apt::exec
 }

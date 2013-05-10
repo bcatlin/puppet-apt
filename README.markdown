@@ -61,7 +61,7 @@ To add a custom repository:
 ###Classes:
 * `apt::params` - Declares all parameters for the module
 * `apt::proxy` - Optionally configures an HTTP proxy for use with `apt`
-* `apt::update` - Declares an `exec` for use in triggering an `apt-get update`
+* `apt::exec` - Declares `exec` resources to trigger `apt-get update` and `apt-get clean` commands
 * `apt::sources` - Deploys a customised `/etc/apt/sources.list` file
 * `apt::key` - Defines an `apt` repository key, downloadable from HTTP or specified on instantiation'
 * `apt::customrepo` - Defines a custom repository, using either a templated file or a static (non-templated) file. Also installs the repository's key via `apt::key`
@@ -79,20 +79,23 @@ To add a custom repository:
 
 ##Release Notes
 
+###0.1.3
+* `apt::exec`
+  * Adding `apt-get clean` refresh-only exec
+
 ###0.1.2
-* Adding lsbdistcodename to sources.list.erb
+* `templates/sources.list.erb`
+  * Adding `$::lsbdistcodename`
 
 ###0.1.1
-
-#### `apt::customrepo`
-* Adding `deb-src` ability
+* `apt::customrepo`
+  * Adding `deb-src` ability
 
 ###0.1.0
-
-#### `apt::customrepo`
-* Support for templated `.list` files
-* Adding parameter documentation
-* `.list` file update now triggers an `apt-get update` 
+* `apt::customrepo`
+  * Support for templated `.list` files
+  * Adding parameter documentation
+  * `.list` file update now triggers an `apt-get update` 
 
 ###0.0.1
 * First PuppetForge release!
