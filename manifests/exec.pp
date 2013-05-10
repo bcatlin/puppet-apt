@@ -23,7 +23,7 @@
 # Copyright (C) 2013 Craig Watson
 # Published under the GNU General Public License v3
 #
-class apt::update {
+class apt::exec {
 
   exec {
     'apt_clean':
