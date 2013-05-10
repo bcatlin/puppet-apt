@@ -120,8 +120,4 @@ define apt::customrepo (
     require     => File["/etc/apt/sources.list.d/${name}.list"],
   }
 
-  Exec['apt_clean'] {
-    notify => Exec['apt_update']
-  }
-
 }

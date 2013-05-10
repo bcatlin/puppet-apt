@@ -61,7 +61,7 @@ To add a custom repository:
 ###Classes:
 * `apt::params` - Declares all parameters for the module
 * `apt::proxy` - Optionally configures an HTTP proxy for use with `apt`
-* `apt::exec` - Declares `exec` resources to trigger `apt-get update` and `apt-get clean` commands
+* `apt::exec` - Declares `exec` resources to trigger `apt-get update` and `apt-get clean` commands (note: 'apt-get update' invokes 'apt-get update')
 * `apt::sources` - Deploys a customised `/etc/apt/sources.list` file
 * `apt::key` - Defines an `apt` repository key, downloadable from HTTP or specified on instantiation'
 * `apt::customrepo` - Defines a custom repository, using either a templated file or a static (non-templated) file. Also installs the repository's key via `apt::key`

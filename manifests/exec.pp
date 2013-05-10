@@ -28,6 +28,7 @@ class apt::exec {
   exec {
     'apt_clean':
       command     => '/usr/bin/apt-get clean',
+      notify      => Exec['apt_update'],
       refreshonly => true;
 
     'apt_update':
