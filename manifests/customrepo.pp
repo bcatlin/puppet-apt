@@ -85,7 +85,7 @@ define apt::customrepo (
   $key_id         = 'undef',
 ) {
 
-  include apt::update
+  include apt::exec
 
   file { "/etc/apt/sources.list.d/${name}.list":
     ensure => $ensure,
