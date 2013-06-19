@@ -79,6 +79,11 @@ To add a custom repository:
 
 ##Release Notes
 
+###0.1.4
+* `apt::customrepo`
+  * Adding `key_name` parameter (defaults to $name) to specify the name of the key resource
+  * Adding check to see if the key is already defined before creating the resource
+
 ###0.1.3
 * `apt::exec`
   * Adding `apt-get clean` refresh-only exec

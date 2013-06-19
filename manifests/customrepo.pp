@@ -47,7 +47,12 @@
 #   Example: true
 #   Default: false (boolean)
 #
-# [*apt_key_url*]
+# [*key_name*]
+#   The name of the apt::key resource created.
+#   Example: 'my_key'
+#   Default: $name (string)
+#
+# [*key_url*]
 #   The HTTP URL for downloading the key file.
 #   Example: 'http://my.keyserver.tld/mykey.asc'
 #   Default: 'undef' (string)
@@ -80,6 +85,7 @@ define apt::customrepo (
   $repo_release   = $::lsbdistcodename,
   $repo_component = 'undef',
   $repo_src       = false,
+  $key_name       = $name,
   $key_url        = 'undef',
   $key_server     = 'undef',
   $key_id         = 'undef',
@@ -111,13 +117,15 @@ define apt::customrepo (
     }
   }
 
-  apt::key { $name:
-    ensure      => $ensure,
-    apt_key_url => $key_url,
-    key_server  => $key_server,
-    key_id      => $key_id,
-    notify      => Exec['apt_clean'],
-    require     => File["/etc/apt/sources.list.d/${name}.list"],
+  if !defined(Apt::Key[$key_name]) {
+    apt::key { $key_name:
+      ensure      => $ensure,
+      apt_key_url => $key_url,
+      key_server  => $key_server,
+      key_id      => $key_id,
+      notify      => Exec['apt_clean'],
+      require     => File["/etc/apt/sources.list.d/${name}.list"],
+    }
   }
 
 }
